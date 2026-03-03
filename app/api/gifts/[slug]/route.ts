@@ -8,7 +8,7 @@ type GiftRecord = {
   id: string;
   slug: string;
   image_path: string;
-  top_text: string;
+  top_text: string | null;
   bottom_text: string | null;
   expires_at: string;
   views: number;
@@ -79,7 +79,7 @@ export async function GET(_: Request, context: RouteContext) {
     return NextResponse.json(
       {
         slug: gift.slug,
-        topText: gift.top_text,
+        topText: gift.top_text ?? "",
         bottomText: gift.bottom_text ?? "",
         expiresAt: expiresAt.toISOString(),
         isExpired: false,

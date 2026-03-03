@@ -91,7 +91,7 @@ export default function GiftSlugPage() {
             local).
           </p>
           <Link
-            href="/criar"
+            href="/"
             className="focusable mt-6 inline-flex rounded-full bg-[var(--accent)] px-6 py-3 font-extrabold text-white"
           >
             Criar um novo
@@ -157,7 +157,7 @@ export default function GiftSlugPage() {
             Abrir de novo
           </button>
           <Link
-            href="/criar"
+            href="/"
             className="focusable rounded-full bg-[var(--accent)] px-5 py-2.5 font-extrabold text-white"
           >
             Criar outro

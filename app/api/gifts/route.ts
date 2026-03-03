@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const fileExt = normalizeExt(body.fileExt);
     assertAllowedExt(fileExt);
 
-    const topText = sanitizeText(body.topText ?? "nos", 60) || "nos";
+    const topText = sanitizeText(body.topText ?? "", 60) || null;
     const bottomText = sanitizeText(body.bottomText ?? "", 120) || null;
     const expiresAt = new Date(Date.now() + GIFT_TTL_HOURS * 60 * 60 * 1000);
     const supabaseAdmin = getSupabaseAdmin();
