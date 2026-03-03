@@ -25,30 +25,6 @@
 
 ---
 
-## 🖼️ Layout
-
-```
-Desktop (≥ 1024px)
-┌─────────────────────────┬──────────────────────────────────────┐
-│      EditorPanel        │           PreviewPanel               │
-│                         │                                      │
-│  🎁 Tcharã              │   ┌──────────────────────────────┐   │
-│                         │   │                              │   │
-│  [ Arraste uma imagem ] │   │    Preview ao vivo /         │   │
-│                         │   │    Spinner / GiftBox /       │   │
-│  Texto grande ________  │   │    Imagem revelada           │   │
-│  Texto pequeno _______  │   │                              │   │
-│                         │   └──────────────────────────────┘   │
-│  ☑ Aviso de conteúdo   │                                      │
-│                         │   [ WhatsApp ]  [ Copiar link ]      │
-│  [ Gerar link ]         │                                      │
-└─────────────────────────┴──────────────────────────────────────┘
-
-Mobile: blocos empilhados verticalmente
-```
-
----
-
 ## 🔄 Máquina de estados
 
 ```
@@ -140,8 +116,6 @@ SUPABASE_ANON_KEY=<sua-anon-key>
 SUPABASE_SERVICE_ROLE_KEY=<sua-service-role-key>
 ```
 
-> As chaves estão disponíveis em **Supabase → Project Settings → API**.
-
 ### 3. Inicie o servidor de desenvolvimento
 
 ```bash
@@ -149,49 +123,6 @@ npm run dev
 ```
 
 Acesse **[http://localhost:3000](http://localhost:3000)**.
-
----
-
-## 📦 Scripts disponíveis
-
-| Comando              | Descrição                                  |
-|----------------------|--------------------------------------------|
-| `npm run dev`        | Servidor de desenvolvimento (Turbopack)    |
-| `npm run build`      | Build de produção                          |
-| `npm run start`      | Serve o build de produção                  |
-| `npm run lint`       | Verifica o código com ESLint               |
-
-### Limpeza manual de presentes expirados
-
-```bash
-SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npx tsx scripts/cleanup.ts
-```
-
-Para simular sem deletar nada:
-
-```bash
-DRY_RUN=1 SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... npx tsx scripts/cleanup.ts
-```
-
----
-
-## 🗄️ Banco de dados (Supabase)
-
-### Tabela `gifts`
-
-| Coluna          | Tipo          | Descrição                        |
-|-----------------|---------------|----------------------------------|
-| `id`            | `uuid`        | Chave primária                   |
-| `slug`          | `text`        | Identificador único da URL       |
-| `image_path`    | `text`        | Caminho no Storage bucket        |
-| `top_text`      | `text / null` | Texto grande (meme)              |
-| `bottom_text`   | `text / null` | Texto pequeno (meme)             |
-| `expires_at`    | `timestamptz` | Expiração (24h após criação)     |
-| `views`         | `int`         | Contador de visualizações        |
-
-### Storage
-
-Bucket: **`gifts`** — imagens ficam em `<slug>/<hash>.<ext>`.
 
 ---
 
@@ -209,13 +140,3 @@ Variável opcional (padrão: "gifts"):
 ```
 
 ---
-
-## 🌐 Rotas
-
-| Rota                    | Tipo      | Descrição                                    |
-|-------------------------|-----------|----------------------------------------------|
-| `/`                     | Estática  | Dashboard de criação                         |
-| `/criar`                | Estática  | Redireciona para `/`                         |
-| `/p/[slug]`             | Dinâmica  | Revelação do presente para o destinatário    |
-| `POST /api/gifts`       | API       | Cria um novo presente                        |
-| `GET /api/gifts/[slug]` | API       | Busca dados de um presente                   |
